@@ -10,13 +10,41 @@ namespace DHEM_TestWork
 {
     class Program
     {
+        static Dictionary<string, string> configArgsKeys = new Dictionary<string, string>()
+        {
+            {"-n", "DB_Name"},
+            {"-h", "DB_Host"},
+            {"-u", "DB_User"},
+            {"-p", "DB_Password"}
+        };
+
         static void Main(string[] args)
         {
-            var input_args = args;
+            UpdateConfigs(args);
+            PrintConfigValues();
+
+            Console.Read();
         }
 
-        static void ParseArgs(string[] args)
+        static void UpdateConfigs(string[] args)
         {
+            for (var i = 0; i < args.Length; i += 2)
+            {
+                if (configArgsKeys.ContainsKey(args[i]) && i + 1 < args.Length)
+                {
+                    Properties.Settings.Default[configArgsKeys[args[i]]] = args[i + 1];
+                }
+            }
+            Properties.Settings.Default.Save();
+        }
+
+        static void PrintConfigValues()
+        {
+            Console.WriteLine("Current config values:");
+            foreach (var configName in configArgsKeys.Values)
+            {
+                Console.WriteLine(configName + ": " + Properties.Settings.Default[configName]);
+            }
         }
     }
 }
