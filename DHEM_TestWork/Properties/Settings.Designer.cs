@@ -70,5 +70,17 @@ namespace DHEM_TestWork.Properties {
                 this["DB_Name"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3306")]
+        public string DB_Port {
+            get {
+                return ((string)(this["DB_Port"]));
+            }
+            set {
+                this["DB_Port"] = value;
+            }
+        }
     }
 }

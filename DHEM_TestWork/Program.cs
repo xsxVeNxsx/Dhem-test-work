@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Linq;
+using DHEM_TestWork.DB;
 
 namespace DHEM_TestWork
 {
@@ -15,15 +12,33 @@ namespace DHEM_TestWork
             {"-n", "DB_Name"},
             {"-h", "DB_Host"},
             {"-u", "DB_User"},
-            {"-p", "DB_Password"}
+            {"-pass", "DB_Password"},
+            {"-port", "DB_Port"}
         };
 
         static void Main(string[] args)
         {
-            UpdateConfigs(args);
-            PrintConfigValues();
+            try
+            {
+                UpdateConfigs(args);
+                PrintConfigValues();
 
-            Console.Read();
+                ORM.Init();
+                Console.WriteLine("DB connected successfully\n");         
+
+                Console.WriteLine("Files parsing starting...");
+                var parser = new DataParser();
+                var storageValues = parser.ParseAll();
+                Console.WriteLine("Files parsing finished\n");
+
+                Console.WriteLine("Storage table inserting...");
+                ORM.Storage.Insert(storageValues);
+                Console.WriteLine("Inserting finished\n");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         static void UpdateConfigs(string[] args)
@@ -35,6 +50,8 @@ namespace DHEM_TestWork
                     Properties.Settings.Default[configArgsKeys[args[i]]] = args[i + 1];
                 }
             }
+            if (args.Contains("-u") && !args.Contains("-pass"))
+                Properties.Settings.Default[configArgsKeys["-pass"]] = "";
             Properties.Settings.Default.Save();
         }
 
@@ -45,6 +62,7 @@ namespace DHEM_TestWork
             {
                 Console.WriteLine(configName + ": " + Properties.Settings.Default[configName]);
             }
+            Console.WriteLine("");
         }
     }
 }

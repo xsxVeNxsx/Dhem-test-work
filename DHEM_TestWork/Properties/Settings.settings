@@ -14,5 +14,8 @@
     <Setting Name="DB_Name" Type="System.String" Scope="User">
       <Value Profile="(Default)">dhem</Value>
     </Setting>
+    <Setting Name="DB_Port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
