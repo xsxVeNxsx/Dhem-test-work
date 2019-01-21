@@ -11,6 +11,9 @@ C# project with basic DB functional and parsing of local files for data insertio
 * <b>-clear</b> Clear Storage table insted of insert data.
 
 ## Application user example
+Connect to 'db4free.net:3306' host by 'dhem_admin:dhem_admin' user:pass at table 'dhem__' and insert data from 'data/' direcotory
+> DHEM_TestWork.exe
+
 Connect to 'db4free.net:3306' host by 'dhem_admin:dhem_admin' user:pass at table 'dhem__' and clear Storage table
 > DHEM_TestWork.exe -u dhem_admin -h db4free.net -pass dhem_admin -n dhem__ -port 3306 -clear
 
