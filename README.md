@@ -10,7 +10,7 @@ C# project with basic DB functional and parsing of local files for data insertio
 * <b>-d</b> Data directory. <b>Default:</b> data/
 * <b>-clear</b> Clear Storage table insted of insert data.
 
-## Application user example
+## Examples
 Connect to 'db4free.net:3306' host by 'dhem_admin:dhem_admin' user:pass at table 'dhem__' and insert data from 'data/' direcotory
 > DHEM_TestWork.exe
 
