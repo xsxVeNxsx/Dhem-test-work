@@ -12,8 +12,6 @@ namespace DHEM_TestWork
 {
     class DataParser
     {
-        const string DEF_DIR = "data";
-
         const int STATION_LINE = 3;
         const int CHANNEL_LINE = 15;
         const int EVALUATION_LINE = 7;
@@ -21,9 +19,9 @@ namespace DHEM_TestWork
 
         public string Dir { get; private set; }
 
-        public DataParser(string dataDir = DEF_DIR)
+        public DataParser(string dataDir = null)
         {
-            Dir = dataDir;
+            Dir = dataDir ?? Properties.Settings.Default.Data_Dir;
         }
 
         public List<StorageModel> ParseAll()

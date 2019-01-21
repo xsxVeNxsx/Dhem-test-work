@@ -13,19 +13,26 @@ namespace DHEM_TestWork
             {"-h", "DB_Host"},
             {"-u", "DB_User"},
             {"-pass", "DB_Password"},
-            {"-port", "DB_Port"}
+            {"-port", "DB_Port"},
+            {"-d", "Data_Dir"}
         };
 
         static void Main(string[] args)
         {
             try
             {
+                Properties.Settings.Default.Upgrade();
                 UpdateConfigs(args);
                 PrintConfigValues();
 
                 ORM.Init();
                 Console.WriteLine("DB connected successfully\n");         
-
+                if (args.Contains("-clear"))
+                {
+                    ORM.Storage.Clear();
+                    Console.WriteLine("Storage table cleared");
+                    return;
+                }
                 Console.WriteLine("Files parsing starting...");
                 var parser = new DataParser();
                 var storageValues = parser.ParseAll();
@@ -43,16 +50,20 @@ namespace DHEM_TestWork
 
         static void UpdateConfigs(string[] args)
         {
-            for (var i = 0; i < args.Length; i += 2)
+            for (var i = 0; i < args.Length;)
             {
                 if (configArgsKeys.ContainsKey(args[i]) && i + 1 < args.Length)
                 {
                     Properties.Settings.Default[configArgsKeys[args[i]]] = args[i + 1];
+                    i += 2;
+                    continue;
                 }
+                ++i;
             }
             if (args.Contains("-u") && !args.Contains("-pass"))
                 Properties.Settings.Default[configArgsKeys["-pass"]] = "";
             Properties.Settings.Default.Save();
+            Properties.Settings.Default.Upgrade();
         }
 
         static void PrintConfigValues()

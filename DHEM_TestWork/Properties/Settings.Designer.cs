@@ -25,7 +25,7 @@ namespace DHEM_TestWork.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute("db4free.net")]
         public string DB_Host {
             get {
                 return ((string)(this["DB_Host"]));
@@ -37,7 +37,7 @@ namespace DHEM_TestWork.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        [global::System.Configuration.DefaultSettingValueAttribute("dhem_admin")]
         public string DB_User {
             get {
                 return ((string)(this["DB_User"]));
@@ -49,7 +49,7 @@ namespace DHEM_TestWork.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        [global::System.Configuration.DefaultSettingValueAttribute("dhem_admin")]
         public string DB_Password {
             get {
                 return ((string)(this["DB_Password"]));
@@ -61,7 +61,7 @@ namespace DHEM_TestWork.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("dhem")]
+        [global::System.Configuration.DefaultSettingValueAttribute("dhem__")]
         public string DB_Name {
             get {
                 return ((string)(this["DB_Name"]));
@@ -80,6 +80,18 @@ namespace DHEM_TestWork.Properties {
             }
             set {
                 this["DB_Port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("data/")]
+        public string Data_Dir {
+            get {
+                return ((string)(this["Data_Dir"]));
+            }
+            set {
+                this["Data_Dir"] = value;
             }
         }
     }

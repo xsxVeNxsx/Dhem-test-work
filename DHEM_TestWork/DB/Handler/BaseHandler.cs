@@ -77,6 +77,12 @@ namespace DHEM_TestWork.DB.Handler
             }
         }
 
+        public void Clear()
+        {
+            string query = string.Format("DELETE FROM {0};", TableName);
+            ExecSimpleQuery(query);
+        }
+
         protected List<U> ExecQuery<U>(string query, Dictionary<string, object> fields, DataParserDelegator parser)
         {
             List<U> result = new List<U>();
@@ -104,7 +110,7 @@ namespace DHEM_TestWork.DB.Handler
             }
         }
 
-        protected void ExecSimpleQuery(string query, List<Dictionary<string, object>> fieldsList)
+        protected void ExecSimpleQuery(string query, List<Dictionary<string, object>> fieldsList = null)
         {
             try
             {
@@ -112,6 +118,7 @@ namespace DHEM_TestWork.DB.Handler
                 {
                     cmd.CommandText = query;
 
+                    fieldsList = fieldsList ?? new List<Dictionary<string, object>>();
                     for (int i = 0, counter = 0; i < fieldsList.Count; ++i, ++counter)
                     {
                         foreach (var field in fieldsList[i])
@@ -120,6 +127,7 @@ namespace DHEM_TestWork.DB.Handler
                             cmd.Parameters.AddWithValue(key + i, field.Value ?? DBNull.Value);
                         }
                     }
+
                     cmd.ExecuteNonQuery();
                 }
             }

@@ -3,19 +3,22 @@
   <Profiles />
   <Settings>
     <Setting Name="DB_Host" Type="System.String" Scope="User">
-      <Value Profile="(Default)">localhost</Value>
+      <Value Profile="(Default)">db4free.net</Value>
     </Setting>
     <Setting Name="DB_User" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root</Value>
+      <Value Profile="(Default)">dhem_admin</Value>
     </Setting>
     <Setting Name="DB_Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root</Value>
+      <Value Profile="(Default)">dhem_admin</Value>
     </Setting>
     <Setting Name="DB_Name" Type="System.String" Scope="User">
-      <Value Profile="(Default)">dhem</Value>
+      <Value Profile="(Default)">dhem__</Value>
     </Setting>
     <Setting Name="DB_Port" Type="System.String" Scope="User">
       <Value Profile="(Default)">3306</Value>
+    </Setting>
+    <Setting Name="Data_Dir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data/</Value>
     </Setting>
   </Settings>
 </SettingsFile>
