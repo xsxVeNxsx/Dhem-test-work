@@ -21,7 +21,6 @@ namespace DHEM_TestWork
         {
             try
             {
-                Properties.Settings.Default.Upgrade();
                 UpdateConfigs(args);
                 PrintConfigValues();
 
@@ -62,8 +61,6 @@ namespace DHEM_TestWork
             }
             if (args.Contains("-u") && !args.Contains("-pass"))
                 Properties.Settings.Default[configArgsKeys["-pass"]] = "";
-            Properties.Settings.Default.Save();
-            Properties.Settings.Default.Upgrade();
         }
 
         static void PrintConfigValues()
